@@ -1,65 +1,88 @@
-import Image from "next/image";
+import Link from "next/link";
+import { howItWorks, stats, subjects } from "@/lib/content";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      {/* Hero */}
+      <section className="mx-auto max-w-[1100px] px-8 pt-24 pb-[72px] text-center">
+        <div className="mb-[22px] inline-block rounded-full border border-accent px-3.5 py-1.5 text-[13px] font-semibold text-accent">
+          STEM tutoring for Grade 8–12
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <h1 className="mb-5 font-serif text-4xl font-bold leading-[1.08] text-pretty sm:text-[56px]">
+          Turn your STEM marks into your best marks.
+        </h1>
+        <p className="mx-auto mb-9 max-w-[640px] text-[19px] leading-[1.6] text-muted">
+          1-on-1 and small-group tutoring in Maths, Physical Sciences, Life
+          Sciences and CS — built around the exam, not just the textbook.
+        </p>
+        <div className="flex flex-wrap justify-center gap-3.5">
+          <Link
+            href="/get-tutor"
+            className="rounded-[10px] bg-accent px-7 py-3.5 text-[15.5px] font-bold text-white"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Get a Tutor
+          </Link>
+          <Link
+            href="/workshops"
+            className="rounded-[10px] border border-line px-7 py-3.5 text-[15.5px] font-bold text-ink"
           >
-            Documentation
-          </a>
+            See Workshops
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Stats */}
+      <section className="mx-auto grid max-w-[1100px] grid-cols-2 gap-4 px-8 pb-[72px] lg:grid-cols-4">
+        {stats.map((s) => (
+          <div
+            key={s.label}
+            className="rounded-card border border-line bg-panel px-[18px] py-6 text-center shadow-[0_1px_3px_rgba(20,20,10,0.04)]"
+          >
+            <div className="font-serif text-[32px] font-bold text-accent">
+              {s.value}
+            </div>
+            <div className="mt-1.5 text-[13.5px] leading-[1.4] text-muted">
+              {s.label}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Subjects */}
+      <section className="mx-auto max-w-[1100px] px-8 pb-20">
+        <h2 className="mb-5 font-serif text-[15px] uppercase tracking-[1.5px] text-muted">
+          Subjects we cover
+        </h2>
+        <div className="flex flex-wrap gap-3">
+          {subjects.map((subj) => (
+            <div
+              key={subj}
+              className="rounded-[10px] border border-line bg-panel2 px-[18px] py-3 text-[14.5px] font-semibold"
+            >
+              {subj}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="mx-auto grid max-w-[1100px] grid-cols-1 gap-5 px-8 pb-24 md:grid-cols-3">
+        {howItWorks.map((st) => (
+          <div
+            key={st.step}
+            className="rounded-card border border-line bg-panel p-7"
+          >
+            <div className="mb-2.5 font-serif text-[26px] font-bold text-accent">
+              {st.step}
+            </div>
+            <div className="mb-2 text-[17px] font-bold">{st.title}</div>
+            <div className="text-[14.5px] leading-[1.55] text-muted">
+              {st.body}
+            </div>
+          </div>
+        ))}
+      </section>
+    </main>
   );
 }
